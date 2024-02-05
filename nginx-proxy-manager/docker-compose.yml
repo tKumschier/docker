@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  app:
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: unless-stopped
+    ports:
+      # These ports are in format <host-port>:<container-port>
+      - '80:80' # Public HTTP Port
+      - '443:443' # Public HTTPS Port
+      - '81:81' # Admin Web Port
+    env_file:
+      - app.env
+    volumes:
+      -  ~/docker/nginx-proxy-manager/volumes/data/:/data
+      -  ~/docker/nginx-proxy-manager/volumes/letsencrypt:/etc/letsencrypt
+    depends_on:
+      - db
+
+  db:
+    image: 'jc21/mariadb-aria:latest'
+    restart: unless-stopped
+    env_file:
+      - db.env
+    volumes:
+      -  ~/docker/nginx-proxy-manager/volumes/mysql:/var/lib/mysql

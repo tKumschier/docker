@@ -1,0 +1,20 @@
+version: "3"
+
+# More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+        #- "67:67/udp"
+      - "8092:80/tcp"
+    environment:
+      TZ: 'Europe/Berlin'
+      WEBPASSWORD: ''
+      DNSMASQ_LISTENING: 'all'
+    volumes:
+      - '~/docker/pihole/volumes/etc-pihole:/etc/pihole'
+      - '~/docker/pihole/volumes/etc-dnsmasq.d:/etc/dnsmasq.d'
+    restart: unless-stopped

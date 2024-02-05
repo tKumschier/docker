@@ -1,0 +1,9 @@
+services:
+  heater_downloader:
+    container_name: heater_downloader
+    image: localhost:10001/heater_downloader:latest
+    volumes:
+      - ~/data/heater_downloader_influx/:/app/data/
+    env_file:
+      - settings.env
+    restart: unless-stopped

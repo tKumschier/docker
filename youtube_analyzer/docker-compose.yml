@@ -1,0 +1,13 @@
+services:
+  youtube_analyzer:
+    image: localhost:10001/youtube_analyzer:latest
+    container_name: youtube_analyzer
+    volumes:
+      - ~/data/youtube_downloader/:/app/data/
+    env_file:
+      - settings.env
+    restart: unless-stopped
+    environment:
+      TZ: Europe/Berlin
+    dns:
+      - 9.9.9.9
