@@ -36,6 +36,8 @@ services:
     ports:
       - ${GRAFANA_PORT}:3000
     restart: unless-stopped
+    dns:
+      - 9.9.9.9
 
 volumes:
   grafana-storage:

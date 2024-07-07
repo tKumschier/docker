@@ -4,6 +4,8 @@ services:
     image: localhost:10001/heater_downloader:latest
     volumes:
       - ~/data/heater_downloader_influx/:/app/data/
+      - ~/logs/heater_downloader_influx/:/app/logs/
     env_file:
       - settings.env
     restart: unless-stopped
+    pull_policy: always
