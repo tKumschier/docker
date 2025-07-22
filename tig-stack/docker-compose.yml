@@ -2,7 +2,7 @@ services:
   influxdb:
     image: influxdb:latest
     container_name: influxdb
-    user: "1000"
+      #user: "1000"
     volumes:
       - /home/server/docker/tig-stack/volumes/influxdb:/var/lib/influxdb2:rw
     env_file:
@@ -11,17 +11,20 @@ services:
     restart: unless-stopped
     ports:
       - ${DOCKER_INFLUXDB_INIT_PORT}:8086
+    user: ":"
 
   telegraf:
     image: telegraf:latest
     container_name: telegraf
     volumes:
       - ${TELEGRAF_CFG_PATH}:/etc/telegraf/telegraf.conf:rw
+      - /home/server/docker/tig-stack/telegraf/telegraf.d:/etc/telegraf/telegraf.d:rw
     env_file:
       - .env
     depends_on:
       - influxdb
     restart: unless-stopped
+    user: ":"
 
   grafana:
     image: grafana/grafana-oss:latest
@@ -36,6 +39,7 @@ services:
     restart: unless-stopped
     dns:
       - 9.9.9.9
+    user: ":"
 
 volumes:
   grafana-storage:
