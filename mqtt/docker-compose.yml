@@ -1,0 +1,24 @@
+services:
+  mqtt:
+    image: emqx/emqx
+    container_name: mqtt-emqx
+    restart: always
+    user: "0:0"
+    ports:
+      - 1884:1883
+      - 8083:8083 
+      - 8883:8883
+      - 8084:8084
+      - 18083:18083
+    volumes:
+      - /home/server/docker/mqtt/volumes/emqx/data:/opt/emqx/data
+      # - /home/server/docker/mqtt/volumes/emqx/etc:/opt/emqx/etc
+      - /home/server/docker/mqtt/volumes/emqx/log:/opt/emqx/log
+
+  # # mqtt-web is only used for debugging
+  # mqtt-web:
+  #   image: emqx/mqttx-web
+  #   container_name: mqtt-web
+  #   restart: always
+  #   ports:
+  #     - "8089:80"

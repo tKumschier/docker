@@ -1,0 +1,8 @@
+services:
+  tvwunschliste:
+    image: localhost:10001/tvwunschliste_downloader:latest
+    container_name: tvwunschliste_downloader
+    env_file:
+      - settings.env
+    dns:
+      - 9.9.9.9

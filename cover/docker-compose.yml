@@ -1,0 +1,10 @@
+services:
+  cover:
+    container_name: cover
+    image: localhost:10001/cover:latest
+    restart: unless-stopped
+    pull_policy: always
+    environment:
+      CONFIG_FILE: "/volumes/conf.yaml"
+    volumes:
+      - ~/docker/cover/volumes:/volumes/

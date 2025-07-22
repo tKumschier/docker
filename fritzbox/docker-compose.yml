@@ -1,0 +1,7 @@
+services:
+  fritzbox:
+    image: localhost:10001/fritzbox:latest
+    container_name: fritzbox
+    env_file:
+      - settings.env
+    restart: unless-stopped
