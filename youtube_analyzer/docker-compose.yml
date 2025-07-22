@@ -4,6 +4,7 @@ services:
     container_name: youtube_analyzer
     volumes:
       - ~/data/youtube_downloader/:/app/data/
+      - ~/logs/youtube_downloader/:/app/logs/
     env_file:
       - settings.env
     restart: unless-stopped

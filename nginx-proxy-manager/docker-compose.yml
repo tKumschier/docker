@@ -15,6 +15,7 @@ services:
       -  ~/docker/nginx-proxy-manager/volumes/letsencrypt:/etc/letsencrypt
     depends_on:
       - db
+    user: '0:0'
 
   db:
     image: 'jc21/mariadb-aria:latest'

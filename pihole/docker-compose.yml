@@ -1,4 +1,11 @@
 # More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
+
+# Change port in rootless
+# $ sudo vi /etc/sysctl.conf
+# Add the following line to the end of the file
+# $ net.ipv4.ip_unprivileged_port_start=53
+# $ sysctl -p
+
 services:
   pihole:
     container_name: pihole
